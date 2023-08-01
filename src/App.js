@@ -1,23 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { useState } from "react";
+import House from "./component/House";
+import SwitchBtn from "./component/SwitchBtn";
 function App() {
+  let [isNight,setIsNight]=useState(false);
+  const onToogleClick= ()=>{
+    setIsNight(!isNight)
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={["App ",isNight?'night':''].join(" ")}>
+      <div className="switch">
+         <SwitchBtn onClick={onToogleClick} isActive={isNight}/>
+      </div>
+      <House floor={4}  className="mx-20" isLight={isNight}/>
+      <House floor={2}  className="mx-20" isLight={isNight}/>
+      <House floor={3}  className="mx-20" isLight={isNight}/>
+      <House floor={5}  className="mx-20" isLight={isNight}/>
     </div>
   );
 }
